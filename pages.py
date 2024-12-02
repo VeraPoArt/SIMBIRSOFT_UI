@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 
+
 class BasePage:
     def __init__(self, driver, timeout=10):
         self.driver = driver
@@ -30,6 +31,8 @@ class LoginPage(BasePage):
         self.login = (By.ID, 'user-name')           #Локатор по ID для элемента строки ввода login
         self.password = (By.ID, 'password')         #Локатор по ID для элемента строки ввода password
         self.login_btn = (By.NAME, 'login-button')  #Локатор по Name для элемента кнопка Login
+        self.error_message = (By.CSS_SELECTOR, '[data-test="error"]')    #Локатор сообщения
+        self.page_url = 'https://www.saucedemo.com/'  # Устанавливаем URL страницы логина
 
     def input_login(self, login: str) -> None:
         self.find_element(*self.login).send_keys(login)
@@ -39,6 +42,12 @@ class LoginPage(BasePage):
 
     def login_button_click(self) -> None:
         self.find_element(*self.login_btn).click()
+
+    def check_login_page_open(self) -> bool:
+        return self.get_current_url() == self.page_url
+
+    def get_error_message(self) -> str:
+        return self.find_element(*self.error_message).text
 
 
 class InventoryPage(BasePage):
