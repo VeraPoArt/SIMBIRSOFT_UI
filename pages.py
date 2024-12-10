@@ -32,11 +32,7 @@ class LoginPage(BasePage):
         __init__(driver):
             Инициализация драйвера и элементов страницы.
     """
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
 
-class LoginPage(BasePage):
     def __init__(self, driver):
         """
         Локаторы для страницы логина.
@@ -69,6 +65,10 @@ class LoginPage(BasePage):
 
     def get_error_message(self) -> str:
         return self.find_element(*self.error_message).text
+
+    def get_attribute(self, locator, attribute_name: str) -> str:
+        element = self.find_element(*locator)
+        return element.get_attribute(attribute_name)
 
 
 class InventoryPage(BasePage):
