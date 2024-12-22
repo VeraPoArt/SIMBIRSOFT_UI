@@ -31,13 +31,7 @@ class BasePage:
 
 
 class LoginPage(BasePage):
-    """
-    Класс для работы со страницей логина.
 
-    Методы:
-        __init__(driver):
-            Инициализация драйвера и элементов страницы.
-    """
     def __init__(self, driver):
         """
         Локаторы для страницы логина.
@@ -171,8 +165,6 @@ class CartPage(BasePage):
     @allure.step("Нажать кнопку Checkout")
     def checkout(self):
         self.find_element(*self.CHECKOUT_BUTTON).click()
-
-        # pages/cart_page.py
 
     @allure.step("Проверка, что открыта страница корзины")
     def check_cart_page_open(self) -> bool:
