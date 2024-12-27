@@ -32,23 +32,7 @@
 
 Если при предыдущем прогоне были упавшие тесты, вы можете запустить только их:
 
-`pytest --last-failed
-`
-
-## Запуск на разных браузерах без GRID
-
-По умолчанию запускается Chrome.
-Чтобы запустить во Firefox, используйте:
-
-`pytest --browser=firefox`
-
-Аналогично для Edge:
-
-`pytest --browser=edge`
-
-И для Opera - в данный момент ведется работа над этим браузером - пока не запускается:
-
-`pytest --browser=opera`
+`pytest --last-failed`
 
 ## Генерация отчётов Allure
 `pytest --alluredir=allure-results`
