@@ -1,13 +1,14 @@
+
+
 import pytest
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from pages.pet_api import PetAPI
+from data.pet_data import generate_pet_data
 
-
-@pytest.fixture()
-def driver():
-    options = Options()
-    options.add_argument('--enable-javascript')
-    _driver = webdriver.Chrome(options=options)
-    _driver.get('https://www.saucedemo.com/')
-    yield _driver
-    _driver.quit()
+@pytest.fixture
+def create_pet():
+    pet_api = PetAPI()
+    pet_data = generate_pet_data()
+    response = pet_api.create_pet(pet_data)
+    assert response.status_code == 200, "Failed to create pet"
+    yield pet_data
+    pet_api.delete_pet(pet_data["id"])

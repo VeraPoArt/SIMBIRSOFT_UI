@@ -164,3 +164,4 @@ cython_debug/
 # Исключить результаты Allure
 allure-results/
 allure-resultsallure/
+allure-results
